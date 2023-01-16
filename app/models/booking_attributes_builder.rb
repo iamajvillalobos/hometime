@@ -1,5 +1,5 @@
 class BookingAttributesBuilder
-  def create_attributes(params)
+  def create_attributes(params, payload_type)
     reservation = params[:reservation]
 
     guest = Guest.find_or_create_by(
@@ -23,7 +23,8 @@ class BookingAttributesBuilder
       infants: reservation[:number_of_infants] || 0,
       payout_price: reservation[:expected_payout_amount],
       security_price: reservation[:listing_security_price_accurate],
-      total_price: reservation[:total_paid_amount_accurate]
+      total_price: reservation[:total_paid_amount_accurate],
+      source: payload_type
     }
   end
 end

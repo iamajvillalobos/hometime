@@ -24,10 +24,13 @@ class AirbnbAttributesBuilderTest < ActiveSupport::TestCase
       "total_price": "4700.00"
     }
 
-    result = AirbnbAttributesBuilder.new.create_attributes(params)
+    payload_type = 'airbnb'
+
+    result = AirbnbAttributesBuilder.new.create_attributes(params, payload_type)
 
     assert_equal Guest.count, 1
 
     assert_equal result[:code], "YYYY12345674"
+    assert_equal result[:source], 'airbnb'
   end
 end

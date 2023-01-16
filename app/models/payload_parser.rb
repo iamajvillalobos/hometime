@@ -24,7 +24,7 @@ class PayloadParser
 
   def self.create_attributes(params, payload_type)
     klass = TYPES[payload_type]
-    klass.create_attributes(params)
+    klass.create_attributes(params, payload_type)
   end
 
   def self.list_files

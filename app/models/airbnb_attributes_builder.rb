@@ -1,5 +1,5 @@
 class AirbnbAttributesBuilder
-  def create_attributes(params)
+  def create_attributes(params, payload_type)
     guest = Guest.find_or_create_by(
       first_name: params[:guest][:first_name],
       last_name: params[:guest][:last_name],
@@ -21,7 +21,8 @@ class AirbnbAttributesBuilder
       infants: params[:infants],
       payout_price: params[:payout_price],
       security_price: params[:security_price],
-      total_price: params[:total_price]
+      total_price: params[:total_price],
+      source: payload_type
     }
   end
 end

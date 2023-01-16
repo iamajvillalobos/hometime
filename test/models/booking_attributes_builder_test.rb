@@ -30,10 +30,13 @@ class BookingAttributesBuilderTest < ActiveSupport::TestCase
       }
     }
 
-    result = BookingAttributesBuilder.new.create_attributes(params)
+    payload_type = 'booking'
+
+    result = BookingAttributesBuilder.new.create_attributes(params, payload_type)
 
     assert_equal Guest.count, 1
 
     assert_equal result[:code], "XXX12345671"
+    assert_equal result[:source], 'booking'
   end
 end
