@@ -37,3 +37,23 @@ Run `bin/setup` to setup development
 
 ## Tests
 Run `bin/tests` to run test suite
+
+## Support additional payload format
+To add another payload format, we need 2 add files and edit 1 file.
+
+Edit `app/models/payload_parser.rb::TYPES`
+```
+TYPES = {
+    booking: BookingAttributesBuilder.new,
+    airbnb: AirbnbAttributesBuilder.new,
+    hometime: HometimeAttributesBuilder.new // added hometime
+  }
+```
+
+Add 2 files:
+  1. Create an attributes builder class e.g. `app/models/hometime_attributes_builder.rb`.
+  2. Create a schema file class e.g. `app/models/schema/hometime.rb`
+
+**Schema** -> responsible for setting what payload structure the app expects
+
+**AttributesBuilder** -> responsible for how to parse the payload structure
