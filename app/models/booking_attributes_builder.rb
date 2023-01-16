@@ -5,18 +5,16 @@ class BookingAttributesBuilder
     guest = Guest.find_or_create_by(
       first_name: reservation[:guest_first_name],
       last_name: reservation[:guest_last_name],
-      phone: reservation[:guest_phone_numbers].first,
+      phone: reservation[:guest_phone_numbers]&.first,
       email: reservation[:guest_email]
     )
 
-    {
+    attributes = {
       code: reservation[:code],
       guest_id: guest.id,
       start_date: reservation[:start_date],
       end_date: reservation[:end_date],
       nights: reservation[:nights],
-      adults: reservation[:guest_details][:number_of_adults],
-      children: reservation[:guest_details][:number_of_children],
       status: reservation[:status_type],
       guests: reservation[:number_of_guests],
       currency: reservation[:host_currency],
@@ -26,5 +24,14 @@ class BookingAttributesBuilder
       total_price: reservation[:total_paid_amount_accurate],
       source: payload_type
     }
+
+    if reservation[:guest_details]
+      attributes.merge!(
+        adults: reservation[:guest_details][:number_of_adults],
+        children: reservation[:guest_details][:number_of_children],
+      )
+    end
+
+    attributes
   end
 end
