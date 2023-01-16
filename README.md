@@ -1,3 +1,5 @@
+[![coverage](https://github.com/iamajvillalobos/hometime/blob/main/coverage/coverage.svg)](https://github.com/iamajvillalobos/hometime)
+
 ## Reservation API
 
 ## Endpoints

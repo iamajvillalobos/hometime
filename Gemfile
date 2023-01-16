@@ -46,3 +46,5 @@ group :development do
   # gem "spring"
 end
 
+gem 'simplecov', require: false, group: :test
+gem 'simplecov-formatter-badge', require: false
