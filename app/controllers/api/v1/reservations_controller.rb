@@ -3,7 +3,8 @@ class Api::V1::ReservationsController < ApplicationController
     payload_type = PayloadParser.get_type(params)
 
     if payload_type == PayloadParser::TYPE_NOT_SUPPORTED
-      render json: { error: 'Payload format not supported' }, status: :unprocessable_entity
+      render json: { error: 'Payload format not supported' },
+        status: :unprocessable_entity
       return
     end
 
@@ -14,7 +15,8 @@ class Api::V1::ReservationsController < ApplicationController
     if reservation.save
       render json: reservation, status: :ok
     else
-      render json: { error: reservation.errors.full_messages.to_sentence }, status: :ok
+      render json: { error: reservation.errors.full_messages.to_sentence },
+        status: :unprocessable_entity
     end
   end
 
@@ -22,7 +24,8 @@ class Api::V1::ReservationsController < ApplicationController
     reservation = Reservation.find_by(id: params[:id])
 
     if !reservation
-      render json: { error: 'No reservation found. Please check id.' }, status: :ok
+      render json: { error: 'No reservation found. Please check id.' },
+        status: :ok
     end
 
     reservation_attrs = PayloadParser.create_attributes(
