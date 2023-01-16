@@ -1,24 +1,39 @@
-# README
+## Reservation API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Endpoints
 
-Things you may want to cover:
+```
+POST /api/v1/reservations
+PATCH /api/v1/reservations/:id
+```
 
-* Ruby version
+## Reservation Object
 
-* System dependencies
+```
+{
+  "id":1,
+  "guest_id":1,
+  "start_date":"2021-03-12",
+  "end_date":"2021-03-16",
+  "nights":4,
+  "guests":4,
+  "adults":null,
+  "children":null,
+  "infants":0,
+  "status":"accepted",
+  "currency":"AUD",
+  "payout_price":"3800.0",
+  "security_price":"500.0",
+  "total_price":"4300.0",
+  "code":"123891",
+  "created_at":"2023-01-16T08:47:01.074Z",
+  "updated_at":"2023-01-16T08:47:01.074Z",
+  "source":"booking"
+}
+```
 
-* Configuration
+## Development
+Run `bin/setup` to setup development
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Tests
+Run `bin/tests` to run test suite
