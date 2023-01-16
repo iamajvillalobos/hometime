@@ -1,6 +1,12 @@
 class Api::V1::ReservationsController < ApplicationController
   def create
     payload_type = PayloadParser.get_type(params)
+
+    if payload_type == PayloadParser::TYPE_NOT_SUPPORTED
+      render json: { error: 'Payload format not supported' }, status: :unprocessable_entity
+      return
+    end
+
     reservation_attrs = PayloadParser.create_attributes(params, payload_type)
 
     reservation = Reservation.new(reservation_attrs)

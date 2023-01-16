@@ -1,5 +1,5 @@
 class PayloadParser
-  class InvalidPayloadTypeError; end
+  TYPE_NOT_SUPPORTED = :response_type_not_supported
 
   TYPES = {
     booking: BookingAttributesBuilder.new,
@@ -7,7 +7,7 @@ class PayloadParser
   }
 
   def self.get_type(params)
-    type = :response_type_not_supported
+    type = TYPE_NOT_SUPPORTED
 
     list_files.each do |file_path|
       filename = File.basename(file_path, ".rb")
