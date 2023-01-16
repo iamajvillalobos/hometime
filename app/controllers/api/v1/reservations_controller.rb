@@ -6,7 +6,7 @@ class Api::V1::ReservationsController < ApplicationController
     reservation = Reservation.new(reservation_attrs)
 
     if reservation.save
-      render json: { reservation: reservation }, status: :ok
+      render json: reservation, status: :ok
     else
       render json: { error: reservation.errors.full_messages.to_sentence }, status: :ok
     end
@@ -25,7 +25,7 @@ class Api::V1::ReservationsController < ApplicationController
     )
 
     if reservation.update(reservation_attrs)
-      render json: { reservation: reservation }, status: :ok
+      render json: reservation, status: :ok
     else
       render json: { error: reservation.errors.full_messages.to_sentence },
         status: :unprocessable_entity
