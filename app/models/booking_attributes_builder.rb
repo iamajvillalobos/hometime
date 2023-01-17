@@ -9,9 +9,13 @@ class BookingAttributesBuilder
       email: reservation[:guest_email]
     )
 
+    generate_attributes(reservation, payload_type, guest.id)
+  end
+
+  def generate_attributes(reservation, payload_type, guest_id)
     attributes = {
       code: reservation[:code],
-      guest_id: guest.id,
+      guest_id: guest_id,
       start_date: reservation[:start_date],
       end_date: reservation[:end_date],
       nights: reservation[:nights],
