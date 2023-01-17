@@ -12,6 +12,11 @@ class BookingAttributesBuilder
     generate_attributes(reservation, payload_type, guest.id)
   end
 
+  def update_attributes(params, payload_type, guest_id)
+    reservation = params[:reservation]
+    generate_attributes(reservation, payload_type, guest_id)
+  end
+
   def generate_attributes(reservation, payload_type, guest_id)
     attributes = {
       code: reservation[:code],

@@ -7,9 +7,19 @@ class AirbnbAttributesBuilder
       email: params[:guest][:email]
     )
     
+    generate_attributes(params, payload_type, guest.id)
+  end
+
+  def update_attributes(params, payload_type, guest_id)
+    generate_attributes(reservation, payload_type, guest_id)
+  end
+
+  private
+
+  def generate_attributes(params, payload_type, guest_id)
     {
       code: params[:reservation_code],
-      guest_id: guest.id,
+      guest_id: guest_id,
       start_date: params[:start_date],
       end_date: params[:end_date],
       nights: params[:nights],

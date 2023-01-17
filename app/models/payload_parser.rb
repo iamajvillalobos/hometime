@@ -27,6 +27,11 @@ class PayloadParser
     klass.create_attributes(params, payload_type)
   end
 
+  def self.update_attributes(params, payload_type, guest_id)
+    klass = TYPES[payload_type]
+    klass.update_attributes(params, payload_type, guest_id)
+  end
+
   def self.list_files
     Dir["./app/models/schema/*.rb"]
   end

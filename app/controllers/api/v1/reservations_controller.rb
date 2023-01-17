@@ -29,9 +29,10 @@ class Api::V1::ReservationsController < ApplicationController
       return
     end
 
-    reservation_attrs = PayloadParser.create_attributes(
+    reservation_attrs = PayloadParser.update_attributes(
       params,
-      reservation.source.to_sym
+      reservation.source.to_sym,
+      reservation.guest.id,
     )
 
     if reservation.update(reservation_attrs)
