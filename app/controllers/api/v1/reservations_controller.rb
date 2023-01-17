@@ -25,7 +25,8 @@ class Api::V1::ReservationsController < ApplicationController
 
     if !reservation
       render json: { error: 'No reservation found. Please check id.' },
-        status: :ok
+        status: :unprocessable_entity
+      return
     end
 
     reservation_attrs = PayloadParser.create_attributes(
